@@ -1,7 +1,7 @@
 Jetson
 ======
 
-[[_TOC_]]
+[TOC]
 
 ## Install os & Jetpack 
 0. Prepare Host pc (Ubuntu 16.04, 18.04 and 20.04 on x86_64 system ,CentOS 7.6, 8.0 and 8.2 on x86_64 system)
