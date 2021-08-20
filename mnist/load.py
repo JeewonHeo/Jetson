@@ -121,7 +121,7 @@ def main():
                            transform=transform)
            
         t_data = []
-        for batch_size in range(0,4):
+        for batch_size in range(0,5):
             test_kwargs.update({'batch_size':10**batch_size})
     
             test_loader = torch.utils.data.DataLoader(dataset2, **test_kwargs)
