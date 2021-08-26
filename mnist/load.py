@@ -8,6 +8,9 @@ from torchvision import datasets, transforms
 from torch.optim.lr_scheduler import StepLR
 from time import time
 import numpy as np
+import os
+import torch
+
 
 
 class Net(nn.Module):
@@ -101,7 +104,12 @@ def main():
 
     torch.manual_seed(args.seed)
 
-    device = torch.device("cuda" if use_cuda else "cpu")
+    #device = torch.device("cuda" if use_cuda else "cpu")
+
+    os.environ["CUDA_VISIBLE_DEVICES"] = "6"
+    ngpu = 1          # Number of GPUs available
+    device = torch.device("cuda:0" if (torch.cuda.is_available() and ngpu > 0) else False)
+    
     for worker_size in range(0,4):
     
         test_kwargs = {'batch_size': 1}
@@ -134,7 +142,7 @@ def main():
             t_data.append(time()-ts)
             print(t_data)
     
-        np.save(f'./data/worker_{2**worker_size}.npy',np.array(t_data))
+        np.save(f'./data/AGX_data/worker_{2**worker_size}.npy',np.array(t_data))
 
 if __name__ == '__main__':
     main()
